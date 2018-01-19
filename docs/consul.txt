@@ -1,0 +1,8 @@
+PUT http://10.47.223.152:8500/v1/agent/service/register
+Accept: application/json
+Content-Type: application/json
+
+{ "ID": "csLm_152", "Name": "csLm", "Tags": [ "v1" ], "Address": "10.47.223.152", "Port": 8288, "EnableTagOverride": false, "Check": { "DeregisterCriticalServiceAfter": "48h", "HTTP": "http://10.47.223.152:8288", "Interval": "10s" } } 
+
+Equivalent curl command (Replace <password> with real password):
+curl -i -H Accept:application/json -X PUT http://10.47.223.152:8500/v1/agent/service/register -H Content-Type:application/json -d '{ "ID": "csLm_152", "Name": "csLm", "Tags": [ "v1" ], "Address": "10.47.223.152", "Port": 8288, "EnableTagOverride": false, "Check": { "DeregisterCriticalServiceAfter": "48h", "HTTP": "http://10.47.223.152:8288", "Interval": "10s" } } '

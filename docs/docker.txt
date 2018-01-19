@@ -1,0 +1,1 @@
+docker run -it -d --restart=always --name lm_cs_ser --privileged=true -p 8288:8288 -v /home/core/GitHub/kakouRestServer_redis:/home centos-python3.6/requests:1.4 gunicorn -c /home/SX-KakouRestServer_cs_lm/gun.py --chdir /home/SX-KakouRestServer_cs_lm run:app
