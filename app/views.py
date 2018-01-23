@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 import json
 from functools import wraps
 
@@ -31,6 +31,10 @@ def cltx_get(id):
     if i is None:
         abort(404)
     try:
+        if i.Pic1 is None:
+            pic = i.Pic2
+        else:
+            pic = i.Pic1
         hphm = {'Na': '-'}
         item = {
 	    'id': i.ID,
@@ -48,7 +52,7 @@ def cltx_get(id):
             'clsx': int(i.LimitSpeed),
             'hpzl': '0',
             'kkbh': i.CrossingNo,
-            'imgurl': '{0}{1}'.format(i.PicUrl.replace('\\', '/'), i.Pic1)
+            'imgurl': '{0}{1}'.format(i.PicUrl.replace('\\', '/'), pic)
         }
         return jsonify(item), 200
     except Exception as e:
@@ -89,6 +93,10 @@ def cltx_list_get():
         hphm = {'Na': '-'}
         items = []
         for i in result:
+            if i.Pic1 is None:
+                pic = i.Pic2
+            else:
+                pic = i.Pic1
             item = {
 	        'id': i.ID,
 	        'hphm': hphm.get(i.VehicleNo, i.VehicleNo),
@@ -105,7 +113,7 @@ def cltx_list_get():
                 'clsx': int(i.LimitSpeed),
                 'hpzl': '0',
                 'kkbh': i.CrossingNo,
-                'imgurl': '{0}{1}'.format(i.PicUrl.replace('\\', '/'), i.Pic1)
+                'imgurl': '{0}{1}'.format(i.PicUrl.replace('\\', '/'), pic)
             }
             items.append(item)
         return jsonify({'total_count': total, 'items': items}), 200
